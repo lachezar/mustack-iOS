@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E20FA4D4255DB7F600575998 /* ImageOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA4D3255DB7F600575998 /* ImageOperations.swift */; };
+		E20FA4D8255DCD2500575998 /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA4D7255DCD2500575998 /* GalleryView.swift */; };
+		E20FA4DC255DD5CC00575998 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA4DB255DD5CC00575998 /* PhotoView.swift */; };
+		E20FA4E0255DDB0500575998 /* GalleryModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA4DF255DDB0500575998 /* GalleryModelView.swift */; };
+		E20FA4E4255DE84600575998 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA4E3255DE84600575998 /* Extensions.swift */; };
 		E2AF0F95255C2C0D00BD86D5 /* MustackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF0F94255C2C0D00BD86D5 /* MustackApp.swift */; };
 		E2AF0F97255C2C0D00BD86D5 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF0F96255C2C0D00BD86D5 /* StartView.swift */; };
 		E2AF0F99255C2C0F00BD86D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2AF0F98255C2C0F00BD86D5 /* Assets.xcassets */; };
@@ -20,6 +25,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E20FA4D3255DB7F600575998 /* ImageOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOperations.swift; sourceTree = "<group>"; };
+		E20FA4D7255DCD2500575998 /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
+		E20FA4DB255DD5CC00575998 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
+		E20FA4DF255DDB0500575998 /* GalleryModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryModelView.swift; sourceTree = "<group>"; };
+		E20FA4E3255DE84600575998 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E2AF0F91255C2C0D00BD86D5 /* mustack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mustack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2AF0F94255C2C0D00BD86D5 /* MustackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MustackApp.swift; sourceTree = "<group>"; };
 		E2AF0F96255C2C0D00BD86D5 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
@@ -45,6 +55,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E20FA4D6255DCD0900575998 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E2AF0F96255C2C0D00BD86D5 /* StartView.swift */,
+				E2AF0FAB255C4D6C00BD86D5 /* MustachifierView.swift */,
+				E20FA4D7255DCD2500575998 /* GalleryView.swift */,
+				E20FA4DB255DD5CC00575998 /* PhotoView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		E2AF0F88255C2C0C00BD86D5 = {
 			isa = PBXGroup;
 			children = (
@@ -64,11 +85,10 @@
 		E2AF0F93255C2C0D00BD86D5 /* mustack */ = {
 			isa = PBXGroup;
 			children = (
+				E20FA4D6255DCD0900575998 /* Views */,
 				E2AF0FBE255D54BC00BD86D5 /* Services */,
 				E2AF0FB8255D468F00BD86D5 /* ModelViews */,
 				E2AF0F94255C2C0D00BD86D5 /* MustackApp.swift */,
-				E2AF0F96255C2C0D00BD86D5 /* StartView.swift */,
-				E2AF0FAB255C4D6C00BD86D5 /* MustachifierView.swift */,
 				E2AF0FB4255D38F100BD86D5 /* AppDelegate.swift */,
 				E2AF0F98255C2C0F00BD86D5 /* Assets.xcassets */,
 				E2AF0F9D255C2C0F00BD86D5 /* Info.plist */,
@@ -89,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				E2AF0FB9255D46C400BD86D5 /* MustachifierModelView.swift */,
+				E20FA4DF255DDB0500575998 /* GalleryModelView.swift */,
 			);
 			name = ModelViews;
 			sourceTree = "<group>";
@@ -98,6 +119,8 @@
 			children = (
 				E2AF0FA6255C4AC600BD86D5 /* ImagePicker.swift */,
 				E2AF0FC0255D54F400BD86D5 /* Mustachifier.swift */,
+				E20FA4D3255DB7F600575998 /* ImageOperations.swift */,
+				E20FA4E3255DE84600575998 /* Extensions.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -180,9 +203,14 @@
 				E2AF0FAC255C4D6C00BD86D5 /* MustachifierView.swift in Sources */,
 				E2AF0F97255C2C0D00BD86D5 /* StartView.swift in Sources */,
 				E2AF0FBA255D46C400BD86D5 /* MustachifierModelView.swift in Sources */,
+				E20FA4DC255DD5CC00575998 /* PhotoView.swift in Sources */,
+				E20FA4D4255DB7F600575998 /* ImageOperations.swift in Sources */,
 				E2AF0FA7255C4AC600BD86D5 /* ImagePicker.swift in Sources */,
 				E2AF0FB5255D38F100BD86D5 /* AppDelegate.swift in Sources */,
+				E20FA4E4255DE84600575998 /* Extensions.swift in Sources */,
+				E20FA4E0255DDB0500575998 /* GalleryModelView.swift in Sources */,
 				E2AF0FC1255D54F400BD86D5 /* Mustachifier.swift in Sources */,
+				E20FA4D8255DCD2500575998 /* GalleryView.swift in Sources */,
 				E2AF0F95255C2C0D00BD86D5 /* MustackApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

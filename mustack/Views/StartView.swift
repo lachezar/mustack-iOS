@@ -8,53 +8,50 @@
 import SwiftUI
 
 struct StartView: View {
-    
+  
   var body: some View {
     
     NavigationView {
       
       ZStack{
         Color.black.edgesIgnoringSafeArea(.all)
-      
+        
         VStack(alignment: .center) {
           
           
           VStack(alignment: .leading, spacing: 20) {
             NavigationLink(destination: MustachifierView(inputMethod: .camera)) {
               HStack{
-                Image(systemName: "photo")
+                Image(systemName: "camera")
                 Text("Take a picture")
                   .fontWeight(.semibold)
-                
               }
               .buttonStyle(DefaultButtonStyle())
               .foregroundColor(.green)
-              .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+              .font(.title)
             }
             
             NavigationLink(destination: MustachifierView(inputMethod: .photoLibrary
-)) {
+            )) {
               HStack{
                 Image(systemName: "photo")
                 Text("Chose from album")
                   .fontWeight(.semibold)
-                
               }
               .buttonStyle(DefaultButtonStyle())
               .foregroundColor(.yellow)
-              .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+              .font(.title)
             }
             
-            Button(action: {
-              print("pressed button 3")
-            }){
+            NavigationLink(destination: GalleryView()) {
               HStack{
                 Image(systemName: "book")
                 Text("History")
                   .fontWeight(.semibold)
               }
+              .buttonStyle(DefaultButtonStyle())
               .foregroundColor(.white)
-              .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+              .font(.title)
             }
           }
           .padding(.top, 100)

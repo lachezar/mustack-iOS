@@ -25,6 +25,7 @@ struct MustachifierView: View {
     self.viewModel.showImagePicker = true
     self.viewModel.image = nil
     self.viewModel.isError = false
+    self.viewModel.saveProgress = .none
   }
   
   var body: some View {
@@ -32,6 +33,7 @@ struct MustachifierView: View {
     ZStack {
       Color.black.edgesIgnoringSafeArea(.all)
       
+      // image or spinner
       VStack {
         if let image = self.viewModel.image {
           Image(uiImage: image)
@@ -42,19 +44,45 @@ struct MustachifierView: View {
             .fontWeight(.bold)
             .font(.title)
             .foregroundColor(.yellow)
+        } else if self.viewModel.showSpinner {
+          Spacer()
+          ProgressView()
+            .scaleEffect(2, anchor: .center)
         }
         
         Spacer()
         
+        // bottom buttons
         if !self.viewModel.showImagePicker {
           HStack {
             Spacer()
             
-            if self.viewModel.image != nil {
-              Button("Save") {
-                self.viewModel.showImagePicker.toggle()
-              }
-              .foregroundColor(.white)
+            // save image button
+            if let image = self.viewModel.image {
+              Button(action: {
+                if let url = ImageOperations.generateName() {
+                  self.viewModel.saveProgress = .ongoing
+                  DispatchQueue.global(qos: .userInitiated).async {
+                    if ImageOperations.saveImage(image: image, url: url) {
+                      DispatchQueue.main.async {
+                        self.viewModel.saveProgress = .completed
+                      }
+                    }
+                  }
+                }
+              }) {
+                switch self.viewModel.saveProgress {
+                case .none:
+                  HStack {
+                    Image(systemName: "square.and.arrow.down")
+                    Text("Save")
+                  }
+                case .ongoing:
+                  ProgressView()
+                case .completed:
+                  Text("👍")
+                }
+              }.foregroundColor(.white)
             }
             
             Spacer()
@@ -66,37 +94,28 @@ struct MustachifierView: View {
             
             Spacer()
             
-            if self.viewModel.image != nil {
-              Button("Share") {
-                self.viewModel.showImagePicker.toggle()
-              }
-              .foregroundColor(.white)
+            // share image button
+            if let image = self.viewModel.image {
+              Button(action: { ImageOperations.share(image: image) }) {
+                HStack {
+                  Image(systemName: "square.and.arrow.up")
+                  Text("Share")
+                }
+              }.foregroundColor(.white) 
             }
             
             Spacer()
-          }.padding(.bottom, 20)
+          }
+          .padding(.bottom, 20)
         }
       }
       .onAppear {
         configure()
       }
       .sheet(isPresented: $viewModel.showImagePicker) {
-        ImagePicker(sourceType: self.sourceType,
-                    onCancel: { self.presentation.wrappedValue.dismiss() }
-        ) { image in
-          do {
-            try Mustachifier.mustachify(image: image) { newImageMaybe in
-              if let newImage = newImageMaybe {
-                self.viewModel.image = newImage
-              } else {
-                self.viewModel.markError()
-              }
-            }
-          } catch {
-            self.viewModel.markError()
-            print(error.localizedDescription)
-          }
-        }
+        self.viewModel.pickImage(
+          sourceType: self.sourceType,
+          onCancel: { self.presentation.wrappedValue.dismiss() })
       }
     }
   }

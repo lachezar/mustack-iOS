@@ -25,7 +25,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>This app will use the camera to put you a mustache :{</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Please allow access to save mustasched photos in your photo library</string>
+	<string>Please allow write access to your photo library, so that the app can save mustached photos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app can let you select a photo and put it a mustache :{</string>
 	<key>UIApplicationSceneManifest</key>
