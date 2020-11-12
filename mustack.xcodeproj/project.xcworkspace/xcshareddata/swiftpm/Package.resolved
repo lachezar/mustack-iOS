@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CoreMLHelpers",
+        "repositoryURL": "https://github.com/shu223/CoreMLHelpers.git",
+        "state": {
+          "branch": null,
+          "revision": "764966cb8c16ead1600d8eb8e052fd7340e80cbe",
+          "version": "0.4.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
