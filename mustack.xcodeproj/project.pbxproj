@@ -66,6 +66,26 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		E20FA4E8255E8D8900575998 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E2AF0FA6255C4AC600BD86D5 /* ImagePicker.swift */,
+				E2AF0FC0255D54F400BD86D5 /* Mustachifier.swift */,
+				E20FA4D3255DB7F600575998 /* ImageOperations.swift */,
+				E20FA4E3255DE84600575998 /* Extensions.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		E20FA4E9255E8DAF00575998 /* ModelViews */ = {
+			isa = PBXGroup;
+			children = (
+				E2AF0FB9255D46C400BD86D5 /* MustachifierModelView.swift */,
+				E20FA4DF255DDB0500575998 /* GalleryModelView.swift */,
+			);
+			path = ModelViews;
+			sourceTree = "<group>";
+		};
 		E2AF0F88255C2C0C00BD86D5 = {
 			isa = PBXGroup;
 			children = (
@@ -86,8 +106,8 @@
 			isa = PBXGroup;
 			children = (
 				E20FA4D6255DCD0900575998 /* Views */,
-				E2AF0FBE255D54BC00BD86D5 /* Services */,
-				E2AF0FB8255D468F00BD86D5 /* ModelViews */,
+				E20FA4E9255E8DAF00575998 /* ModelViews */,
+				E20FA4E8255E8D8900575998 /* Services */,
 				E2AF0F94255C2C0D00BD86D5 /* MustackApp.swift */,
 				E2AF0FB4255D38F100BD86D5 /* AppDelegate.swift */,
 				E2AF0F98255C2C0F00BD86D5 /* Assets.xcassets */,
@@ -103,26 +123,6 @@
 				E2AF0F9B255C2C0F00BD86D5 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		E2AF0FB8255D468F00BD86D5 /* ModelViews */ = {
-			isa = PBXGroup;
-			children = (
-				E2AF0FB9255D46C400BD86D5 /* MustachifierModelView.swift */,
-				E20FA4DF255DDB0500575998 /* GalleryModelView.swift */,
-			);
-			name = ModelViews;
-			sourceTree = "<group>";
-		};
-		E2AF0FBE255D54BC00BD86D5 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				E2AF0FA6255C4AC600BD86D5 /* ImagePicker.swift */,
-				E2AF0FC0255D54F400BD86D5 /* Mustachifier.swift */,
-				E20FA4D3255DB7F600575998 /* ImageOperations.swift */,
-				E20FA4E3255DE84600575998 /* Extensions.swift */,
-			);
-			name = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
