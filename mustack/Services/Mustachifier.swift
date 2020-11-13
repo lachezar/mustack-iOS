@@ -83,17 +83,13 @@ final class Mustachifier {
 
             bottomImage.draw(in: CGRect(origin: .zero, size: newSize))
 
-            //context?.rotate(by: 0.1)
             let mustacheHeight = 2 * abs(maxX.y - minX.y)
             let angle = atan((minX.y - maxX.y) / (maxX.x - minX.x))
             let tiltedMustache = mustache.rotate(radians: Float(angle))
-            print((mustacheWidth, mustacheHeight, angle))
+            let tiltCorrectionX = mustacheWidth - cos(angle)*mustacheWidth
+            let tiltCorrectionY = cos(angle) * mustacheHeight / 2
 
-            tiltedMustache?.draw(in: CGRect(origin: CGPoint(x: minX.x - 20 - (mustacheWidth - cos(angle)*mustacheWidth), y: bottomImage.size.height - bottomNosePoint.y - cos(angle)*mustacheHeight/2), size: CGSize(width: mustacheWidth + 40, height: max(bottomNosePoint.y - topPoint.y + 20, mustacheHeight))))
-            //          print(CGPoint(x: minX.x - 20, y: topPoint.y - 20))
-            //          print(CGSize(width: mustacheWidth + 40, height: (mustacheWidth + 40) / 2))
-
-
+            tiltedMustache?.draw(in: CGRect(origin: CGPoint(x: minX.x - 20 - tiltCorrectionX, y: bottomImage.size.height - bottomNosePoint.y - tiltCorrectionY), size: CGSize(width: mustacheWidth + 40, height: max(bottomNosePoint.y - topPoint.y + 20, mustacheHeight))))
 
             resultImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()

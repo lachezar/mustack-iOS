@@ -56,7 +56,6 @@ final class ImageOperations {
     let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
     do {
       let fileURLs = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
-      print(fileURLs)
       return fileURLs
     } catch {
       print("Error while enumerating files \(documentsURL.path): \(error.localizedDescription)")
