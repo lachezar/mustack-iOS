@@ -9,6 +9,6 @@ import Combine
 import UIKit
 
 final class GalleryModelView: ObservableObject {
-  
+
   @Published var imageUrls: [URL] = []
 }

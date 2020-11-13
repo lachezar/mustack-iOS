@@ -9,13 +9,13 @@ import Combine
 import UIKit
 
 final class MustachifierModelView: ObservableObject {
-  
+
   enum SaveProgress {
     case none
     case ongoing
     case completed
   }
-  
+
   @Published var showImagePicker: Bool = false {
     willSet {
       self.saveProgress = .none
@@ -38,10 +38,10 @@ final class MustachifierModelView: ObservableObject {
     }
   }
   @Published var saveProgress: SaveProgress = .none
-  
+
   let mustacheImage: UIImage = UIImage(named: "Mustache")!
   let goldenMustacheImage: UIImage = UIImage(named: "GoldenMustache")!
-  
+
   func pickImage(sourceType: UIImagePickerController.SourceType, onCancel: @escaping () -> Void) -> ImagePicker {
     return ImagePicker(sourceType: sourceType, onCancel: onCancel) { image in
       self.showSpinner = true
@@ -61,11 +61,11 @@ final class MustachifierModelView: ObservableObject {
       }
     }
   }
-    
+
   func emptyScreen() -> Bool {
     return image == nil && showImagePicker == .none
   }
-  
+
   func markError() {
     self.image = nil
     self.isError = true

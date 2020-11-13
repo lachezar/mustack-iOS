@@ -10,29 +10,29 @@ import Vision
 import Combine
 
 struct MustachifierView: View {
-  
+
   @ObservedObject var viewModel = MustachifierModelView()
-  
+
   @Environment(\.presentationMode) var presentation
-  
+
   let sourceType: UIImagePickerController.SourceType
-  
+
   init(inputMethod: UIImagePickerController.SourceType) {
     self.sourceType = inputMethod
   }
-  
+
   func configure() {
     self.viewModel.showImagePicker = true
     self.viewModel.image = nil
     self.viewModel.isError = false
     self.viewModel.saveProgress = .none
   }
-  
+
   var body: some View {
-    
+
     ZStack {
       Color.black.edgesIgnoringSafeArea(.all)
-      
+
       // image or spinner
       VStack {
         if let image = self.viewModel.image {
@@ -49,21 +49,24 @@ struct MustachifierView: View {
           ProgressView()
             .scaleEffect(2, anchor: .center)
         }
-        
+
         Spacer()
-        
+
         // bottom buttons
         if !self.viewModel.showImagePicker {
           HStack {
             Spacer()
-            
+
             // save image button
             if let image = self.viewModel.image {
               Button(action: {
-                if let url = ImageOperations.generateName() {
+                if let (thumb: thumbUrl, normal: url) = ImageOperations.generateName() {
                   self.viewModel.saveProgress = .ongoing
+
                   DispatchQueue.global(qos: .userInitiated).async {
-                    if ImageOperations.saveImage(image: image, url: url) {
+                    let thumbImage = image.resized(maxHeight: 800)
+
+                    if ImageOperations.saveImage(image: thumbImage, url: thumbUrl) && ImageOperations.saveImage(image: image, url: url) {
                       DispatchQueue.main.async {
                         self.viewModel.saveProgress = .completed
                       }
@@ -84,16 +87,16 @@ struct MustachifierView: View {
                 }
               }.foregroundColor(.white)
             }
-            
+
             Spacer()
-            
+
             Button("Pick new image") {
               self.viewModel.showImagePicker.toggle()
             }
             .foregroundColor(.white)
-            
+
             Spacer()
-            
+
             // share image button
             if let image = self.viewModel.image {
               Button(action: { ImageOperations.share(image: image) }) {
@@ -101,9 +104,9 @@ struct MustachifierView: View {
                   Image(systemName: "square.and.arrow.up")
                   Text("Share")
                 }
-              }.foregroundColor(.white) 
+              }.foregroundColor(.white)
             }
-            
+
             Spacer()
           }
           .padding(.bottom, 20)

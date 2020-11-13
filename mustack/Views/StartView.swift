@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct StartView: View {
-  
+
   var body: some View {
-    
+
     NavigationView {
-      
+
       ZStack{
         Color.black.edgesIgnoringSafeArea(.all)
-        
+
         VStack(alignment: .center) {
-          
-          
+
+
           VStack(alignment: .leading, spacing: 20) {
             NavigationLink(destination: MustachifierView(inputMethod: .camera)) {
               HStack{
@@ -30,7 +30,7 @@ struct StartView: View {
               .foregroundColor(.green)
               .font(.title)
             }
-            
+
             NavigationLink(destination: MustachifierView(inputMethod: .photoLibrary
             )) {
               HStack{
@@ -42,7 +42,7 @@ struct StartView: View {
               .foregroundColor(.yellow)
               .font(.title)
             }
-            
+
             NavigationLink(destination: GalleryView()) {
               HStack{
                 Image(systemName: "book")
@@ -55,14 +55,14 @@ struct StartView: View {
             }
           }
           .padding(.top, 100)
-          
+
           Spacer()
-          
+
           Text("Yankov.se")
             .font(.custom("HelveticaNeue-Bold", size: 12))
             .foregroundColor(.white)
             .padding(.bottom, 10)
-          
+
         }
       }
       .accentColor(.white)
