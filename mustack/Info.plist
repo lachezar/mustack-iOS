@@ -17,15 +17,13 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>This app will use the camera to put you a mustache :{</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Please allow write access to your photo library, so that the app can save mustached photos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app can let you select a photo and put it a mustache :{</string>
 	<key>UIApplicationSceneManifest</key>

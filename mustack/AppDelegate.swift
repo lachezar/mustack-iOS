@@ -21,7 +21,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
     UINavigationBar.appearance().tintColor = .white
 
-
     return true
   }
 }

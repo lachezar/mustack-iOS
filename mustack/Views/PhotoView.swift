@@ -33,7 +33,7 @@ struct PhotoView: View {
             Text("Delete")
           }).alert(isPresented: self.$prompt) {
             let deleteButton = Alert.Button.destructive(Text("Delete")) {
-              let _ = ImageOperations.deleteImage(url: url)
+              let _ = ImageOperations.deleteImageAndThumb(normalUrl: url)
               self.modelView.imageUrls = ImageOperations.listThumbImages()
             }
             let cancelButton = Alert.Button.cancel()

@@ -38,6 +38,14 @@ final class ImageOperations {
     URL(string: from.absoluteString.replacingOccurrences(of: thumbPostFix, with: normalPostFix))
   }
 
+  static func thumbUrl(from: URL) -> URL? {
+    if from.absoluteString.contains(thumbPostFix) {
+      return from
+    } else {
+      return URL(string: from.absoluteString.replacingOccurrences(of: normalPostFix, with: thumbPostFix))
+    }
+  }
+
   static func saveImage(image: UIImage, url: URL) -> Bool {
     if let imageBlob = image.jpegData(compressionQuality: 1.0) {
       do {
@@ -79,6 +87,21 @@ final class ImageOperations {
     } catch {
       return false
     }
+  }
+
+  static func deleteImageAndThumb(normalUrl: URL) -> Bool {
+    let result = deleteImage(url: normalUrl)
+
+    if let thumbUrl = thumbUrl(from: normalUrl) {
+      return result && deleteImage(url: thumbUrl)
+    } else {
+      return false
+    }
+  }
+
+  static func deleteAll() -> Void {
+    let urls = listImages()
+    urls.forEach { url in deleteImage(url: url) }
   }
 
   static func share(image: UIImage) {

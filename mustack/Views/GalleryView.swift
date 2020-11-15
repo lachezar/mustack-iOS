@@ -18,24 +18,28 @@ struct GalleryView: View {
   ]
 
   var body: some View {
-    ScrollView {
-      LazyVGrid(columns: columns, alignment: .center) {
-        ForEach(self.modelView.imageUrls, id: \.self) { thumbUrl in
-          if let image = ImageOperations.readImage(url: thumbUrl), let normalUrl = ImageOperations.normalUrl(from: thumbUrl) {
-            NavigationLink(destination: PhotoView(url: normalUrl, modelView: self.modelView)) {
-              // fill the grid with thumb images, otherwise we run out of memory
-              // GeometryReader was not letting the ScrollView to scroll to the bottom,
-              // so I had to use UIScreen
-              Image(uiImage: image)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: (UIScreen.main.bounds.size.width / 3 - 10).rounded(), height: (UIScreen.main.bounds.size.width / 3 - 10).rounded())
+    ZStack {
+      Color.black.edgesIgnoringSafeArea(.all)
+
+      ScrollView {
+        LazyVGrid(columns: columns, alignment: .center) {
+          ForEach(self.modelView.imageUrls, id: \.self) { thumbUrl in
+            if let image = ImageOperations.readImage(url: thumbUrl), let normalUrl = ImageOperations.normalUrl(from: thumbUrl) {
+              NavigationLink(destination: PhotoView(url: normalUrl, modelView: self.modelView)) {
+                // fill the grid with thumb images, otherwise we run out of memory
+                // GeometryReader was not letting the ScrollView to scroll to the bottom,
+                // so I had to use UIScreen
+                Image(uiImage: image)
+                  .resizable()
+                  .aspectRatio(contentMode: .fit)
+                  .frame(width: (UIScreen.main.bounds.size.width / 3 - 10).rounded(), height: (UIScreen.main.bounds.size.width / 3 - 10).rounded())
+              }
             }
           }
+          .border(Color.yellow, width: 1)
         }
-        .border(Color.yellow, width: 1)
+        .onAppear( perform: self.configure )
       }
-      .onAppear( perform: self.configure )
     }
   }
 
