@@ -101,7 +101,7 @@ final class ImageOperations {
 
   static func deleteAll() -> Void {
     let urls = listImages()
-    urls.forEach { url in deleteImage(url: url) }
+    urls.forEach { url in let _ = deleteImage(url: url) }
   }
 
   static func share(image: UIImage) {

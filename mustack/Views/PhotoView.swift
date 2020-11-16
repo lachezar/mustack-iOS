@@ -16,43 +16,47 @@ struct PhotoView: View {
 
   var body: some View {
     if let image = ImageOperations.readImage(url: self.url) {
-      VStack {
-        Image(uiImage: image)
-          .resizable()
-          .aspectRatio(contentMode: .fit)
+      ZStack {
+        Color.black.edgesIgnoringSafeArea(.all)
 
-        Spacer()
-
-        HStack{
+        VStack {
+          Image(uiImage: image)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
 
           Spacer()
 
-          // delete image button
-          Button(action: { self.prompt = true }, label: {
-            Image(systemName: "trash")
-            Text("Delete")
-          }).alert(isPresented: self.$prompt) {
-            let deleteButton = Alert.Button.destructive(Text("Delete")) {
-              let _ = ImageOperations.deleteImageAndThumb(normalUrl: url)
-              self.modelView.imageUrls = ImageOperations.listThumbImages()
+          HStack{
+
+            Spacer()
+
+            // delete image button
+            Button(action: { self.prompt = true }, label: {
+              Image(systemName: "trash")
+              Text("Delete")
+            }).alert(isPresented: self.$prompt) {
+              let deleteButton = Alert.Button.destructive(Text("Delete")) {
+                let _ = ImageOperations.deleteImageAndThumb(normalUrl: url)
+                self.modelView.imageUrls = ImageOperations.listThumbImages()
+              }
+              let cancelButton = Alert.Button.cancel()
+              return Alert(title: Text("Are you sure?"), primaryButton: cancelButton, secondaryButton: deleteButton)
             }
-            let cancelButton = Alert.Button.cancel()
-            return Alert(title: Text("Are you sure?"), primaryButton: cancelButton, secondaryButton: deleteButton)
+            .foregroundColor(.red)
+
+            Spacer()
+
+            // share image button
+            Button(action: {ImageOperations.share(image: image)}) {
+              HStack {
+                Image(systemName: "square.and.arrow.up")
+                Text("Share")
+              }
+            }.foregroundColor(.white)
+
+            Spacer()
           }
-          .foregroundColor(.red)
-
-          Spacer()
-
-          // share image button
-          Button(action: {ImageOperations.share(image: image)}) {
-            HStack {
-              Image(systemName: "square.and.arrow.up")
-              Text("Share")
-            }
-          }.foregroundColor(.white)
-
-          Spacer()
-        }
+        }.padding(.bottom, 20)
       }
     }
   }
